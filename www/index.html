@@ -24,7 +24,7 @@
       $scope.page_title = "Transações";
 
       $http.get(
-          'http://104.131.60.142/transactions/3', {
+          'http://104.131.60.142/transactions/1', {
             headers: {"Authorization": "Basic " + btoa('fabian' + ":" + 'aaa')}
         }).
         success(function(data, status, headers, config) {
