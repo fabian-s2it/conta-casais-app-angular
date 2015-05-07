@@ -16,8 +16,12 @@
   <script src="js/facebookConnectPlugin.js"></script>
 
   <script src="js/index.js"></script>
-
-  <script src="cordova.js"></script>
+  <script type="text/javascript">
+    if (!navigator.userAgent.toLowerCase().match('chrome')) {
+        document.write("<script src='cordova.js'><\/script>");
+    }
+  </script>
+  <!---<script src="cordova.js"></script>-->
 
 
 
@@ -34,16 +38,18 @@
 
 
       $http.get(
-          API_LOCAL, {
+          API_REMOTE, {
             headers: {"Authorization": "Basic " + btoa('fabian' + ":" + 'aaa')}
         }).
         success(function(data, status, headers, config) {
           // this callback will be called asynchronously
           // when the response is available
+          console.log('sucesso na transação');
           $scope.qty = data.length;
           $scope.transactions = data;
         }).
         error(function(data, status, headers, config) {
+          console.log('Falha na transação');
           console.log(status);
           // called asynchronously if an error occurs
           // or server returns response with an error status.
@@ -259,6 +265,7 @@
     </ons-template>
 
 <script>
+
 
 app.initialize();
 
