@@ -13,7 +13,6 @@
   <script src="lib/onsen/js/angular/angular.js"></script>    
   <script src="lib/onsen/js/onsenui.js"></script>   
   <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-  <script src="js/facebookConnectPlugin.js"></script>
 
   <script src="js/index.js"></script>
   <script type="text/javascript">
@@ -21,8 +20,7 @@
         document.write("<script src='cordova.js'><\/script>");
     }
   </script>
-  <!---<script src="cordova.js"></script>-->
-
+  <!-- <script src="cordova.js"></script> -->
 
 
   <script>
@@ -36,10 +34,11 @@
       var API_LOCAL = 'http://127.0.0.1:2323/transactions/1';
       var API_REMOTE = 'http://104.131.60.142/transactions/1';
 
+      console.log("Authorization Basic " + window.localStorage.getItem('token'));
 
       $http.get(
           API_REMOTE, {
-            headers: {"Authorization": "Basic " + btoa('fabian' + ":" + 'aaa')}
+            headers: {"Authorization": "Basic " + window.localStorage.getItem('token')}
         }).
         success(function(data, status, headers, config) {
           // this callback will be called asynchronously
@@ -59,7 +58,45 @@
 
     module.controller('BalanceCtrl', function($scope){
       $scope.page_title = "Balanço";
-    });      
+    });
+
+    module.controller('RegisterCtrl', function($scope, $http){
+      $scope.page_title = "Registro";
+
+      $scope.username = '';
+      $scope.password = '';
+      $scope.email = '';
+
+
+      $scope.register = function() {
+
+        var API_USER_REGISTER_LOCAL = 'http://127.0.0.1:2323/user/';
+        var API_USER_REGISTER_REMOTE = 'http://104.131.60.142/user/';
+
+        $http.post(
+            API_USER_REGISTER_REMOTE,
+            {
+              username: $scope.username,
+              password: $scope.password,
+              email: $scope.email
+            }
+          ).
+          success(function(data, status, headers, config) {
+            // this callback will be called asynchronously
+            // when the response is available
+            console.log(data);
+            window.localStorage.setItem("token", data.token);
+          }).
+          error(function(data, status, headers, config) {
+            console.log('Falha no registro');
+            console.log(status);
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+        });
+      }
+
+
+    });    
 
     module.controller('MainCtrl', function($scope){
       $scope.page_title = "DINHEIRAMA";
@@ -115,8 +152,8 @@
           <div class="notification menu-notification">3</div>
         </ons-list-item>
 
-        <ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('page-login.html', {closeMenu: true})">
-          Help
+        <ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('page-register.html', {closeMenu: true})">
+          Register
         </ons-list-item>
 
         <ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('page2.html', {closeMenu: true})">
@@ -142,7 +179,7 @@
         <ons-button modifier="large" ng-click="vibrar(1000)">Botão Teste Vibrar</ons-button>
         <ons-button modifier="large" ng-click="notificar()">Botão Teste Notificação</ons-button>
           
-
+        <div id="fb-root"></div>
 
     </ons-page>
   </ons-template>
@@ -179,7 +216,7 @@
 
       <div class="login-form">
         <input type="email" class="text-input--underbar" placeholder="Email" value="" name="username">
-        <input type="password" class="text-input--underbar" placeholder="Password" value="" name="password">
+        <input type="password" class="text-input--underbar" style="color:#000;" placeholder="Password" value="" name="password">
         <br><br>
         <ons-button modifier="large" class="login-button">Log In</ons-button>
         <br><br>
@@ -191,17 +228,20 @@
 
 
   <ons-template id="page-register.html">
-    <ons-page>
+    <ons-page ng-controller="RegisterCtrl">
       <ons-toolbar>
         <div class="center">Log In</div>
         <div class="right"><ons-toolbar-button ng-click="menu.setMainPage('page-main.html', {closeMenu: true})">Close</ons-toolbar-button></div>
       </ons-toolbar>
 
       <div class="login-form">
-        <input type="email" class="text-input--underbar" placeholder="Email" value="" name="username">
-        <input type="password" class="text-input--underbar" placeholder="Password" value="" name="password">
+
+        <input type="username" ng-model="username" class="text-input--underbar" placeholder="Usuário" value="" name="usuario">
+        <input type="email" ng-model="email" class="text-input--underbar" placeholder="Email" value="" name="email">
+        <input type="password" ng-model="password" class="text-input--underbar" placeholder="Senha" value="" name="password">
+
         <br><br>
-        <ons-button modifier="large" class="login-button">Log In</ons-button>
+        <ons-button modifier="large" class="login-button" ng-click="register()">Register</ons-button>
         <br><br>
         <ons-button modifier="quiet" class="forgot-password">Forgot password?</ons-button>
       </div>
@@ -266,15 +306,7 @@
 
 <script>
 
-
 app.initialize();
-
-$(document).ready(function(){
-
-});
-
-
-
 
 </script>
  

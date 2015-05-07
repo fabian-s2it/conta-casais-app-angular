@@ -71,18 +71,23 @@
   margin: 60px auto 0;
 }
 
-input[type=email], input[type=password] {
+input[type=email], input[type=password], input[type=username] {
   display: block;
   width: 100%;
   margin: 0 auto;
   outline: none;
   padding-top: 24px;
   padding-bottom: 24px;
+  color:#000;
 }
 
 .login-button {
   width: 100%;
   margin: 0 auto;
+}
+
+.ng-invalid-email, .ng-invalid {
+  color:#000;
 }
 
 .forgot-password {

@@ -33,9 +33,8 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        facebookConnectPlugin.browserInit(750106918420413);
         console.log('fb fdp');
-        console.log(facebookConnectPlugin.prototype);
+        console.log(facebookConnectPlugin);
         //navigator.geolocation.getCurrentPosition(onSuccess, onError);
         //app.receivedEvent('deviceready');
         var fbLoginSuccess = function (userData) {
