@@ -13,18 +13,28 @@
   <script src="lib/onsen/js/angular/angular.js"></script>    
   <script src="lib/onsen/js/onsenui.js"></script>   
   <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="js/facebookConnectPlugin.js"></script>
+
   <script src="js/index.js"></script>
 
   <script src="cordova.js"></script>
+
+
 
   <script>
     var module = angular.module('app', ['onsen']);
 
     module.controller('TransactionsCtrl', function($scope, $http){
+
       $scope.page_title = "Transações";
 
+
+      var API_LOCAL = 'http://127.0.0.1:2323/transactions/1';
+      var API_REMOTE = 'http://104.131.60.142/transactions/1';
+
+
       $http.get(
-          'http://127.0.0.1:2323/transactions/3', {
+          API_LOCAL, {
             headers: {"Authorization": "Basic " + btoa('fabian' + ":" + 'aaa')}
         }).
         success(function(data, status, headers, config) {
@@ -65,11 +75,10 @@
   
 </head>
 
-<body>    
-  
+<body>
   <ons-sliding-menu
     menu-page="menu.html" main-page="page-main.html" side="left"
-    var="menu" type="reveal" max-slide-distance="260px" swipeable="true">
+    var="menu" type="reveal" max-slide-distance="220px" swipeable="true">
   </ons-sliding-menu>
 
   <ons-template id="menu.html">
@@ -85,6 +94,11 @@
         <ons-list-item class="menu-item" ng-click="menu.setMainPage('page2.html', {closeMenu: true})">
           <ons-icon icon="fa-bar-chart-o" fixed-width="true"></ons-icon>
           Balanço
+        </ons-list-item>
+
+        <ons-list-item class="menu-item" ng-click="menu.setMainPage('page-register.html', {closeMenu: true})">
+          <ons-icon icon="fa-heart" fixed-width="true"></ons-icon>
+          Companheiro
         </ons-list-item>
 
       <br><br><br><br>
@@ -158,8 +172,28 @@
       </ons-toolbar>
 
       <div class="login-form">
-        <input type="email" class="text-input--underbar" placeholder="Email" value="">
-        <input type="password" class="text-input--underbar" placeholder="Password" value="">
+        <input type="email" class="text-input--underbar" placeholder="Email" value="" name="username">
+        <input type="password" class="text-input--underbar" placeholder="Password" value="" name="password">
+        <br><br>
+        <ons-button modifier="large" class="login-button">Log In</ons-button>
+        <br><br>
+        <ons-button modifier="quiet" class="forgot-password">Forgot password?</ons-button>
+      </div>
+
+    </ons-page>
+  </ons-template>
+
+
+  <ons-template id="page-register.html">
+    <ons-page>
+      <ons-toolbar>
+        <div class="center">Log In</div>
+        <div class="right"><ons-toolbar-button ng-click="menu.setMainPage('page-main.html', {closeMenu: true})">Close</ons-toolbar-button></div>
+      </ons-toolbar>
+
+      <div class="login-form">
+        <input type="email" class="text-input--underbar" placeholder="Email" value="" name="username">
+        <input type="password" class="text-input--underbar" placeholder="Password" value="" name="password">
         <br><br>
         <ons-button modifier="large" class="login-button">Log In</ons-button>
         <br><br>
@@ -227,6 +261,13 @@
 <script>
 
 app.initialize();
+
+$(document).ready(function(){
+
+});
+
+
+
 
 </script>
  
