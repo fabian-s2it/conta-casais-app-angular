@@ -33,22 +33,7 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        console.log('fb fdp');
-        console.log(facebookConnectPlugin);
-        //navigator.geolocation.getCurrentPosition(onSuccess, onError);
-        //app.receivedEvent('deviceready');
-        var fbLoginSuccess = function (userData) {
-            console.log('sucesso login');
-            alert("UserInfo: " + JSON.stringify(userData));
-        }
-
-
-        console.log(facebookConnectPlugin);
-
-        facebookConnectPlugin.login(["public_profile"],
-            fbLoginSuccess,
-            function (error) { alert("Erro login" + error) }
-        );
+        console.log('deviceready');
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -92,11 +77,3 @@ function vibrar(ms) {
     console.log(ms);
     navigator.notification.vibrate(ms);
 }
-
-
-$(document).ready(function(){
-    $("#nova-transacao").click(function() {
-        navigator.notification.vibrate(4000);
-        $('#conteudo').load('pagina.html');
-    });
-});
