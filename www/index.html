@@ -124,44 +124,6 @@
     var="menu" type="reveal" max-slide-distance="220px" swipeable="true">
   </ons-sliding-menu>
 
-  <ons-template id="menu.html">
-    <ons-page modifier="menu-page">
-      <ons-toolbar modifier="transparent"></ons-toolbar>
-
-      <ons-list class="menu-list">
-        <ons-list-item class="menu-item" ng-click="menu.setMainPage('page-transactions.html', {closeMenu: true})">
-          <ons-icon icon="fa-money" fixed-width="true"></ons-icon>
-          Transações
-        </ons-list-item>
-
-        <ons-list-item class="menu-item" ng-click="menu.setMainPage('page2.html', {closeMenu: true})">
-          <ons-icon icon="fa-bar-chart-o" fixed-width="true"></ons-icon>
-          Balanço
-        </ons-list-item>
-
-        <ons-list-item class="menu-item" ng-click="menu.setMainPage('page-register.html', {closeMenu: true})">
-          <ons-icon icon="fa-heart" fixed-width="true"></ons-icon>
-          Companheiro
-        </ons-list-item>
-
-      <br><br><br><br>
-
-      <ons-list class="bottom-menu-list">
-        <ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('page-login.html', {closeMenu: true})">
-          Login
-          <div class="notification menu-notification">3</div>
-        </ons-list-item>
-
-        <ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('page-register.html', {closeMenu: true})">
-          Register
-        </ons-list-item>
-
-        <ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('page2.html', {closeMenu: true})">
-          Send feedback
-        </ons-list-item>
-      </ons-list>
-    </ons-page>
-  </ons-template>
 
   <ons-template id="page-main.html">
     <ons-page ng-controller="MainCtrl">
@@ -207,49 +169,7 @@
     </ons-page>
   </ons-template>
 
-  <ons-template id="page-login.html">
-    <ons-page>
-      <ons-toolbar>
-        <div class="center">Log In</div>
-        <div class="right"><ons-toolbar-button ng-click="menu.setMainPage('page-main.html', {closeMenu: true})">Close</ons-toolbar-button></div>
-      </ons-toolbar>
-
-      <div class="login-form">
-        <input type="email" class="text-input--underbar" placeholder="Email" value="" name="username">
-        <input type="password" class="text-input--underbar" style="color:#000;" placeholder="Password" value="" name="password">
-        <br><br>
-        <ons-button modifier="large" class="login-button">Log In</ons-button>
-        <br><br>
-        <ons-button modifier="quiet" class="forgot-password">Forgot password?</ons-button>
-      </div>
-
-    </ons-page>
-  </ons-template>
-
-
-  <ons-template id="page-register.html">
-    <ons-page ng-controller="RegisterCtrl">
-      <ons-toolbar>
-        <div class="center">Log In</div>
-        <div class="right"><ons-toolbar-button ng-click="menu.setMainPage('page-main.html', {closeMenu: true})">Close</ons-toolbar-button></div>
-      </ons-toolbar>
-
-      <div class="login-form">
-
-        <input type="username" ng-model="username" class="text-input--underbar" placeholder="Usuário" value="" name="usuario">
-        <input type="email" ng-model="email" class="text-input--underbar" placeholder="Email" value="" name="email">
-        <input type="password" ng-model="password" class="text-input--underbar" placeholder="Senha" value="" name="password">
-
-        <br><br>
-        <ons-button modifier="large" class="login-button" ng-click="register()">Register</ons-button>
-        <br><br>
-        <ons-button modifier="quiet" class="forgot-password">Forgot password?</ons-button>
-      </div>
-
-    </ons-page>
-  </ons-template>
-
-  <ons-template id="page2.html">
+  <ons-template id="page-balance.html">
     <ons-page ng-controller="BalanceCtrl">
       <ons-toolbar>
         <div class="left">
