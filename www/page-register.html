@@ -1,0 +1,21 @@
+<ons-page ng-controller="RegisterCtrl">
+
+  <ons-toolbar>
+    <div class="center">Log In</div>
+    <div class="right"><ons-toolbar-button ng-click="menu.setMainPage('page-main.html', {closeMenu: true})">Close</ons-toolbar-button></div>
+  </ons-toolbar>
+
+  <div class="login-form">
+
+    <input type="username" ng-model="username" class="text-input--underbar" placeholder="Usuário" value="" name="usuario">
+    <input type="email" ng-model="email" class="text-input--underbar" placeholder="Email" value="" name="email">
+    <input type="password" ng-model="password" class="text-input--underbar" placeholder="Senha" value="" name="password">
+
+    <br><br>
+    <ons-button modifier="large" class="login-button" ng-click="register()">Register</ons-button>
+    <br><br>
+    <ons-button modifier="quiet" class="forgot-password">Forgot password?</ons-button>
+    
+  </div>
+
+</ons-page>

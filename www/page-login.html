@@ -1,0 +1,16 @@
+<ons-page>
+  <ons-toolbar>
+    <div class="center">Log In</div>
+    <div class="right"><ons-toolbar-button ng-click="menu.setMainPage('page-main.html', {closeMenu: true})">Close</ons-toolbar-button></div>
+  </ons-toolbar>
+
+  <div class="login-form">
+    <input type="email" class="text-input--underbar" placeholder="Email" value="" name="username">
+    <input type="password" class="text-input--underbar" style="color:#000;" placeholder="Password" value="" name="password">
+    <br><br>
+    <ons-button modifier="large" class="login-button">Log In</ons-button>
+    <br><br>
+    <ons-button modifier="quiet" class="forgot-password">Forgot password?</ons-button>
+  </div>
+
+</ons-page>
