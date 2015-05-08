@@ -1,0 +1,19 @@
+
+  <ons-page ng-controller="MainCtrl">
+
+    <ons-toolbar>
+      <div class="left">
+        <ons-toolbar-button ng-click="menu.toggle()">
+          <ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+      <div class="center">{{page_title}}</div>
+    </ons-toolbar>
+
+      <br>
+
+      <ons-button modifier="large" ng-click="vibrar(1000)">Botão Teste Vibrar</ons-button>
+      <ons-button modifier="large" ng-click="notificar()">Botão Teste Notificação</ons-button>
+      <ons-button modifier="large" ng-click="app_navigator.pushPage('page-balance.html')">Botão Teste pagePush</ons-button>
+          
+  </ons-page>

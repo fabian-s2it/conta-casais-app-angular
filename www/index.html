@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="styles/onsen-css-components.css">  
   <link rel="stylesheet" href="styles/app.css"/>
 
+  <meta name="theme-color" content="#ea2f4a">
+
   <script src="lib/onsen/js/angular/angular.js"></script>    
   <script src="lib/onsen/js/onsenui.js"></script>   
   <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -21,153 +23,25 @@
     }
   </script>
   <!-- <script src="cordova.js"></script> -->
-
-
-  <script>
-    var module = angular.module('app', ['onsen']);
-
-    module.controller('TransactionsCtrl', function($scope, $http){
-
-      $scope.page_title = "Transações";
-
-
-      var API_LOCAL = 'http://127.0.0.1:2323/transactions/1';
-      var API_REMOTE = 'http://104.131.60.142/transactions/1';
-
-      console.log("Authorization Basic " + window.localStorage.getItem('token'));
-
-      $http.get(
-          API_REMOTE, {
-            headers: {"Authorization": "Basic " + window.localStorage.getItem('token')}
-        }).
-        success(function(data, status, headers, config) {
-          // this callback will be called asynchronously
-          // when the response is available
-          console.log('sucesso na transação');
-          $scope.qty = data.length;
-          $scope.transactions = data;
-        }).
-        error(function(data, status, headers, config) {
-          console.log('Falha na transação');
-          console.log(status);
-          // called asynchronously if an error occurs
-          // or server returns response with an error status.
-      });
-
-    });
-
-    module.controller('BalanceCtrl', function($scope){
-      $scope.page_title = "Balanço";
-    });
-
-    module.controller('RegisterCtrl', function($scope, $http){
-      $scope.page_title = "Registro";
-
-      $scope.username = '';
-      $scope.password = '';
-      $scope.email = '';
-
-
-      $scope.register = function() {
-
-        var API_USER_REGISTER_LOCAL = 'http://127.0.0.1:2323/user/';
-        var API_USER_REGISTER_REMOTE = 'http://104.131.60.142/user/';
-
-        $http.post(
-            API_USER_REGISTER_REMOTE,
-            {
-              username: $scope.username,
-              password: $scope.password,
-              email: $scope.email
-            }
-          ).
-          success(function(data, status, headers, config) {
-            // this callback will be called asynchronously
-            // when the response is available
-            console.log(data);
-            window.localStorage.setItem("token", data.token);
-          }).
-          error(function(data, status, headers, config) {
-            console.log('Falha no registro');
-            console.log(status);
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-        });
-      }
-
-
-    });    
-
-    module.controller('MainCtrl', function($scope){
-      $scope.page_title = "DINHEIRAMA";
-
-      $scope.vibrar = function(ms) {
-        console.log('vibrar');
-        navigator.notification.vibrate(ms);  
-      }
-
-      $scope.notificar = function() {
-        alert('Notificando!');
-      }
-    });
-
-
-  </script>
-
+  <script src="js/app.js"></script>
   
   
 </head>
 
 <body>
+
   <ons-sliding-menu
     menu-page="menu.html" main-page="page-main.html" side="left"
     var="menu" type="reveal" max-slide-distance="220px" swipeable="true">
   </ons-sliding-menu>
 
 
-  <ons-template id="page-main.html">
-    <ons-page ng-controller="MainCtrl">
-      <ons-toolbar>
-        <div class="left">
-          <ons-toolbar-button ng-click="menu.toggle()">
-            <ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
-          </ons-toolbar-button>
-        </div>
-        <div class="center">{{page_title}}</div>
-      </ons-toolbar>
 
-        <br>
-
-        <ons-button modifier="large" ng-click="vibrar(1000)">Botão Teste Vibrar</ons-button>
-        <ons-button modifier="large" ng-click="notificar()">Botão Teste Notificação</ons-button>
-          
-        <div id="fb-root"></div>
-
-    </ons-page>
+  <!-- <ons-template id="page200.html">
+    
   </ons-template>
+ -->
 
-
-  <ons-template id="page200.html">
-    <ons-page>
-      <ons-toolbar>
-        <div class="left">
-          <ons-toolbar-button ng-click="menu.toggle()">
-            <ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
-          </ons-toolbar-button>
-        </div>
-        <div class="center">DINHEIRAMA</div>
-      </ons-toolbar>
-
-      <ons-row style="margin-top: 100px; text-align: center;">
-        <ons-col>
-          <ons-button modifier="light" ng-click="menu.toggleMenu()">
-            Toggle Menu
-          </ons-button>
-          <p style="color: #999; font-size: 13px;">Click "Toggle Menu" to close/open menu,<br> You can also swipe the page left/right.</p>
-        </ons-col>
-      </ons-row>
-    </ons-page>
-  </ons-template>
 
   <ons-template id="page-balance.html">
     <ons-page ng-controller="BalanceCtrl">
