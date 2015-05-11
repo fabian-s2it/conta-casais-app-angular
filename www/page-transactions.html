@@ -1,0 +1,42 @@
+<ons-navigator title="Navigator" var="app_navigator">
+  <ons-page id="page-transactions" ng-controller="TransactionsCtrl">
+
+    <ons-toolbar>
+      <div class="left">
+        <ons-toolbar-button ng-click="menu.toggle()">
+          <ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+        </ons-toolbar-button>
+        <div class="right">
+          <ons-toolbar-button>
+            <ons-icon icon="ion-plus" ng-click="app_navigator.pushPage('page-new-transaction.html', {animation: 'lift'})" fixed-width="false" style="vertical-align: -4px;"></ons-icon>
+          </ons-toolbar-button>
+        </div>
+      </div>
+      <div class="center">{{page_title}}</div>
+    </ons-toolbar>
+
+    <div class="dialog-mask" style="background: #fff" ng-show="loading"></div>
+
+    <div ng-show="loading" style="height: 140px; text-align:center;">
+        <p style="text-align: center; 
+          margin-top: 200px; color: gray;">
+          <i class="fa fa-spinner fa-spin fa-lg"></i>
+        </p>
+      </div>
+
+    <ons-list ng-hide="loading">
+      <ons-list-item modifier="tappable" class="plan" ng-repeat="transaction in transactions">
+        <ons-icon icon="fa-home" size="20px"></ons-icon> {{ transaction.datetime }}
+        -
+        <span class="list-item-action">
+          {{ transaction.description }}
+        </span>
+
+        <span class="list-item-action" style="float:right;">
+           {{ transaction.amount | currency:"R$ " }}
+        </span>
+      </ons-list-item>
+    </ons-list>
+
+  </ons-page>
+</ons-navigator>

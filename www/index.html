@@ -65,39 +65,6 @@
     </ons-page>
   </ons-template>
 
-
-  <ons-template id="page-transactions.html">
-      <ons-page id="page-transactions" ng-controller="TransactionsCtrl">
-        <ons-toolbar>
-        <div class="left">
-          <ons-toolbar-button ng-click="menu.toggle()">
-            <ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
-          </ons-toolbar-button>
-        </div>
-        <div class="center">{{page_title}}</div>
-      </ons-toolbar>
-
-        <ons-list>
-
-          <ons-list-item modifier="tappable" class="plan" ng-repeat="transaction in transactions">
-            <ons-icon icon="fa-home" size="20px"></ons-icon> {{ transaction.datetime }}
-            -
-            <span class="list-item-action">
-              {{ transaction.description }}
-            </span>
-
-            <span class="list-item-action" style="float:right;">
-              R$ {{ transaction.amount }}
-            </span>
-          </ons-list-item>
-
-        </ons-list>
-
-          
-
-      </ons-page>
-    </ons-template>
-
 <script>
 
 app.initialize();

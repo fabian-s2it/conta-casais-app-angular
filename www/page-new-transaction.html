@@ -1,0 +1,58 @@
+<link rel="stylesheet" href="styles/page-new-transaction.css"/>
+  <ons-page ng-controller="NewTransactionCtrl">
+
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Voltar</ons-back-button></div>
+      <div class="center">+ Transação</div>
+    </ons-toolbar>
+
+    <div class="formarea">
+      <div class="form-row">
+        <input type="text" class="text-input--underbar width-half" ng-model="amount" placeholder="R$" value="">
+        <input type="text" class="text-input--underbar width-half" ng-model="type" placeholder="Casa, Alimentação" value="" style="border-width-left: 1px">
+      </div>
+
+      <div class="form-row">
+        <input type="text" class="text-input--underbar width-full" ng-model="description" placeholder="Descrição" value="">
+      </div>
+
+      <div class="form-row">
+        <input type="date" class="text-input--underbar width-full" ng-model="datetime" placeholder="01/01/2015" value="">
+      </div>
+
+      <br><br>
+
+      <div class="form-row">
+        <ons-list>
+
+          <ons-list-header>Tipo</ons-list-header>
+
+          <ons-list-item modifier="tappable">
+            <label class="radio-button radio-button--list-item">
+              <input type="radio" name="category" checked="checked" ng-model="category" value="1">
+              <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+              Crédito
+            </label>
+          </ons-list-item>
+
+          <ons-list-item modifier="tappable">
+            <label class="radio-button radio-button--list-item">
+              <input type="radio" name="category" ng-model="category" value="2">
+              <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+              Débito
+            </label>
+          </ons-list-item>
+
+        </ons-list>
+      </div>
+
+      <!-- <div class="lucent">
+        <p class="note">Password - 6 characters or more</p>
+      </div> -->
+
+      <div class="vspc form-row">
+        <ons-button modifier="large--cta" ng-click="add_transaction()">Adicionar</ons-button>
+      </div>
+    </div>
+
+  </ons-page>
