@@ -135,10 +135,19 @@
 
     module.controller('RegisterSuccessCtrl', function($scope, $http){
       
-      $scope.username = $scope.app_navigator.getCurrentPage().options.username;
+
+      $scope.username = app_navigator.getCurrentPage().options.username;
+
+      console.log('Username: '+$scope.username);
+
+
+      var options = {
+        animation: 'slide', // What animation to use
+        onTransitionEnd: function() {}
+      };
 
       $scope.register_success = function() {
-        $scope.app_navigator.pushPage('page-main.html');
+        app_navigator.resetToPage('page-main.html', options);
       }
 
     }); 
